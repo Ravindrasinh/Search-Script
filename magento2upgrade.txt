@@ -1,0 +1,43 @@
+How to Upgrade Magento 2 to the Latest Version
+
+magento version upgrade reference link :- https://webiators.com/upgrade-magento-2-to-2-3-5/ 
+
+step -1 :-  composer require magento/product-community-edition=2.4.5 --no-update
+
+			install commend :- composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=2.4.5 
+			
+			php -dmemory_limit=2G bin/magento setup:install --base-url="https://mv244/" --db-host="localhost" --db-name="mv244" --db-user="mv244" --db-password="mv244@123" --admin-firstname="admin" --admin-lastname="admin" --admin-email="user@example.com" --admin-user="admin" --admin-password="Admin@123456" --language="en_US" --currency="USD" --timezone="America/Chicago" --use-rewrites="1" --backend-frontname="admin" --search-engine=elasticsearch7 --elasticsearch-host="localhost" --elasticsearch-port=9200
+			
+			COMPOSER_MEMORY_LIMIT=-1 composer update
+			
+		1 to 2 & 2 to 1 change composer :-	COMPOSER_MEMORY_LIMIT=-1 composer self-update --2.2.18
+		
+
+step -2 :- rm -rf var/di var/generation;
+			
+			php -dmemory_limit=2G bin/magento c:f
+			
+step -3 :- php -dmemory_limit=2G bin/magento setup:upgrade
+
+			php -dmemory_limit=2G bin/magento setup:di:compile
+			
+step -4 :- php -dmemory_limit=2G bin/magento indexer:reindex
+
+OR
+
+
+COMPOSER_MEMORY_LIMIT=-1 composer require friendsofphp/php-cs-fixer
+
+
+https://magento.stackexchange.com/questions/355380/magento-2-4-4-upgrade-error-on-composer-update
+
+
+php -dmemory_limit=1G bin/magento setup:install --base-url="https://mv246/" --db-host="localhost" --db-name="mv246" --db-user="mv246" --db-password="mv246@123" --admin-firstname="admin" --admin-lastname="admin" --admin-email="rwilliam1001@gmail.com" --admin-user="admin" --admin-password="admin123" --language="en_US" --currency="USD" --timezone="America/Chicago" --use-rewrites="1" --backend-frontname="admin" --search-engine=elasticsearch7 --elasticsearch-host="localhost" --elasticsearch-port=9200
+
+
+composer require magento/product-community-edition=2.4.6-p1 --no-update
+
+composer require magento/product-community-edition=2.4.6 --no-update
+composer update --ignore-platform-reqs
+
+composer require cweagans/composer-patches 
